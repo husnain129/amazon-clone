@@ -7,5 +7,11 @@ export namespace Public {
     | 'People'
     | 'Tech'
     | 'Sports'
-    | 'Travel';
+    | 'Travel'
+    | 'Laptop'
+    | 'Mobile'
+    | 'Camera'
+    | 'Book'
+    | 'Clothing'
+    | 'Drink';
 }

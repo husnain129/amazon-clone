@@ -24,7 +24,7 @@ const CardMax = ({ type, image }: { type: Public.Image; image: string }) => {
           {type}
         </Text>
         <Image
-          src={image}
+          src={image + `?${Math.floor(Math.random() * 100)}`}
           alt="electronic"
           w="full"
           objectFit={'cover'}

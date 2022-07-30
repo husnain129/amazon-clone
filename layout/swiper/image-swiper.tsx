@@ -7,7 +7,7 @@ const ImageSwiper = () => {
   return (
     <>
       <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
-        {ImagesGenerator('sports').map((url, index) => (
+        {ImagesGenerator('Sports').swiper.map((url, index) => (
           <SwiperSlide key={index} style={{ height: '90vh' }}>
             {
               <Image

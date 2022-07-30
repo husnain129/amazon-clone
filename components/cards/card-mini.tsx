@@ -2,7 +2,7 @@ import { Flex, Image, Text } from '@chakra-ui/react';
 import { Public } from '../../types/public';
 
 const CardMini = ({
-  type,
+  type = 'Nature',
   images,
 }: {
   type: Public.Image;
@@ -36,7 +36,7 @@ const CardMini = ({
           return (
             <Flex flexDir={'column'} key={index} mx={index === 2 ? '.4em' : ''}>
               <Image
-                src={url + `?${Math.floor(Math.random() * 20)}`}
+                src={url + `?${Math.floor(Math.random() * 500)}`}
                 alt="cup"
                 w={'6em'}
                 h={'6em'}

@@ -1,5 +1,26 @@
 import { Public } from '../types/public';
 
+const ImageTypes = [
+  'Food',
+  'Fashion',
+  'Film',
+  'Nature',
+  'People',
+  'Tech',
+  'Sports',
+  'Travel',
+  'Laptop',
+  'Mobile',
+  'Camera',
+  'Book',
+  'Clothing',
+  'Drink',
+];
+
+export const generateImageType = ImageTypes[
+  Math.floor(Math.random() * ImageTypes.length)
+] as Public.Image;
+
 const ImagesGenerator = (type: Public.Image) => {
   const image_src = `https://source.unsplash.com/random/900×700/?${type}`;
   const fake_images: string[] = [
@@ -16,6 +37,11 @@ const ImagesGenerator = (type: Public.Image) => {
       });
     },
     one: () => image_src,
+    multiple: (len: number) => {
+      return [...Array(len)].map(() => {
+        return image_src;
+      });
+    },
   };
 };
 
