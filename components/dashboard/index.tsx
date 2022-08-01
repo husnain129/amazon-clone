@@ -9,7 +9,7 @@ const Dashboard = () => {
   return (
     <Flex w="full" flexDir={'column'} gap={'2em'} p="3em 2em" h="max-content">
       <Flex alignItems={'center'} justifyContent="center" gap={'2em'} flexWrap="wrap">
-        {useProduct().product?.map((post, index) => (
+        {useProduct().product?.map((product, index) => (
           <Box
             initial={{ y: 10, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -18,7 +18,7 @@ const Dashboard = () => {
             as={motion.div}
             key={index}
           >
-            <Card post={post} isLarge={largeImaegPositions.includes(index)} />
+            <Card product={product} isLarge={largeImaegPositions.includes(index)} />
           </Box>
         ))}
       </Flex>

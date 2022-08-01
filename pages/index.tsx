@@ -1,13 +1,10 @@
 import { Flex } from '@chakra-ui/react';
-import dynamic from 'next/dynamic';
 import { useEffect } from 'react';
 import Dashboard from '../components/dashboard';
 import ImageSwiper from '../components/swiper/image-swiper';
 import { useProduct } from '../context/product';
-import NavbarBottom from '../layout/navbar-bottom';
+import LayoutWrapper from '../layout/layout-wrapper';
 import { Product } from '../types/product';
-
-const NavbarComponent = dynamic(() => import('../layout/navbar'), { ssr: false });
 
 const Home = ({ posts }: { posts: Product.Root[] }) => {
   const { setProduct, product } = useProduct();
@@ -16,16 +13,14 @@ const Home = ({ posts }: { posts: Product.Root[] }) => {
   }, [setProduct, posts]);
 
   return (
-    <Flex flexDir={'column'} h="max-content" pos="absolute" top={0} bottom={0} w="full">
-      <NavbarComponent />
-      <NavbarBottom />
+    <LayoutWrapper>
       <Flex w="full" flexDir={'column'} h="max-content" pos={'relative'} zIndex={1}>
         <ImageSwiper />
         <Flex w="full" h="max-content" pos={'absolute'} pb="2em" top={'70%'} zIndex={21}>
           {product.length > 0 && <Dashboard />}
         </Flex>
       </Flex>
-    </Flex>
+    </LayoutWrapper>
   );
 };
 

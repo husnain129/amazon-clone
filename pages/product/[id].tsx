@@ -1,20 +1,12 @@
-import { Flex } from '@chakra-ui/react';
-import dynamic from 'next/dynamic';
 import Product from '../../components/product';
-import Footer from '../../layout/footer';
-import NavbarBottom from '../../layout/navbar-bottom';
+import LayoutWrapper from '../../layout/layout-wrapper';
 import { Product as ProductType } from '../../types/product';
-
-const NavbarComponent = dynamic(() => import('../../layout/navbar'), { ssr: false });
 
 const ProductPage = ({ _product }: { _product: ProductType.Root }) => {
   return (
-    <Flex flexDir={'column'} minH="100vh">
-      <NavbarComponent />
-      <NavbarBottom />
+    <LayoutWrapper>
       <Product product={_product} />
-      <Footer />
-    </Flex>
+    </LayoutWrapper>
   );
 };
 

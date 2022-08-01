@@ -1,13 +1,8 @@
-import { Flex } from '@chakra-ui/react';
-import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 import Cart from '../components/cart/cart';
 import { useCart } from '../context/cart';
-import Footer from '../layout/footer';
-import NavbarBottom from '../layout/navbar-bottom';
+import LayoutWrapper from '../layout/layout-wrapper';
 import { Product as ProductType } from '../types/product';
-
-const NavbarComponent = dynamic(() => import('../layout/navbar'), { ssr: false });
 
 const CartPage = ({ products }: { products: ProductType.Root[] }) => {
   const { cart } = useCart();
@@ -20,12 +15,9 @@ const CartPage = ({ products }: { products: ProductType.Root[] }) => {
     );
   }, [products, cart]);
   return (
-    <Flex flexDir={'column'} minH="100vh" h="max-content" pb="3em" bg="#eaeded">
-      <NavbarComponent />
-      <NavbarBottom />
+    <LayoutWrapper>
       {cartItems.length > 0 && <Cart cartItems={cartItems} />}
-      <Footer />
-    </Flex>
+    </LayoutWrapper>
   );
 };
 

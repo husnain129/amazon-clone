@@ -2,12 +2,22 @@
 import { Button, Flex, IconButton, Image, Text } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { BsArrowLeft } from 'react-icons/bs';
+import { useCart } from '../../context/cart';
 import { Product as ProductType } from '../../types/product';
 
 const Product = ({ product }: { product: ProductType.Root }) => {
+  const { setCartItem, cart } = useCart();
   const router = useRouter();
   return (
-    <Flex w={'full'} gap="2em" flexDir="column" p="2em" alignItems={'center'} minH="90vh">
+    <Flex
+      w={'full'}
+      bg="white"
+      gap="2em"
+      flexDir="column"
+      p="2em"
+      alignItems={'center'}
+      minH="90vh"
+    >
       <Flex w="full" alignItems={'center'} justifyContent="flex-start">
         <IconButton
           colorScheme={'green'}
@@ -34,6 +44,7 @@ const Product = ({ product }: { product: ProductType.Root }) => {
           alignItems="flex-start"
           justifyContent={'space-between'}
           h="full"
+          gap={'.9em'}
         >
           <Text fontSize={'1.8em'} textTransform="uppercase" fontWeight="bold">
             {product.title.slice(0, 30)}
@@ -62,7 +73,20 @@ const Product = ({ product }: { product: ProductType.Root }) => {
           <Text fontSize={'1.1em'} fontWeight="semibold">
             ${product.price}
           </Text>
-          <Button w="10em" size={'lg'} colorScheme={'yellow'}>
+          <Button
+            onClick={() =>
+              setCartItem({
+                data: {
+                  id: product.id,
+                  count: 1,
+                },
+              })
+            }
+            w="10em"
+            size={'lg'}
+            colorScheme={'yellow'}
+            disabled={cart.find((item) => item.id === product.id) as unknown as boolean}
+          >
             Add to Cart
           </Button>
         </Flex>

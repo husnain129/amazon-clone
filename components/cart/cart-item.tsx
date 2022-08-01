@@ -35,7 +35,7 @@ const CartItem = ({ item }: { item: Product.Root }) => {
           {item.title}
         </Text>
         <Text pr={'8em'}>{item.description.slice(0, 220)}...</Text>
-        <Text>
+        <Text fontWeight={'semibold'}>
           ${item.price} x {cartCount} = ${item.price * cartCount}
         </Text>
       </Flex>

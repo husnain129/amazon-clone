@@ -6,7 +6,7 @@ import CartItem from './cart-item';
 const Cart = ({ cartItems }: { cartItems: Product.Root[] }) => {
   return (
     <Flex
-      p="2em"
+      p="2em 2em 5em"
       flexDir={'column'}
       w="full"
       height={'max-content'}
