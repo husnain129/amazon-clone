@@ -1,9 +1,11 @@
 import { Button, Flex, Image, Text } from '@chakra-ui/react';
 import Link from 'next/link';
+import { useCart } from '../../context/cart';
 import { Product } from '../../types/product';
 import { stars } from '../../utils/stars';
 
 const Card = ({ post, isLarge }: { post: Product.Root; isLarge?: boolean }) => {
+  const { setCartItem } = useCart();
   const title = isLarge ? post.title.slice(0, 50) : post.title.slice(0, 30);
   const description = isLarge
     ? post.description.slice(0, 120)
@@ -38,7 +40,18 @@ const Card = ({ post, isLarge }: { post: Product.Root; isLarge?: boolean }) => {
         </Link>
         <Flex>{stars(post.rating.rate)}</Flex>
         <Text>{description}...</Text>
-        <Button w="full" colorScheme={'yellow'}>
+        <Button
+          w="full"
+          colorScheme={'yellow'}
+          onClick={() =>
+            setCartItem({
+              data: {
+                id: post.id,
+                count: 1,
+              },
+            })
+          }
+        >
           Add to cart
         </Button>
       </Flex>
