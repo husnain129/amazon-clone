@@ -1,62 +1,30 @@
-import { Flex, Grid, GridItem } from '@chakra-ui/react';
-import { Product } from '../../types/product';
+import { Box, Flex } from '@chakra-ui/react';
+import { motion } from 'framer-motion';
+import { useProduct } from '../../context/product';
+import Footer from '../../layout/footer';
 import Card from '../cards/card';
 
-const Dashboard = ({ posts }: { posts: Product.Root[] }) => {
+const Dashboard = () => {
+  const largeImaegPositions = [4, 13, 18];
   return (
-    <Flex w="full" flexDir={'column'} gap={'2em'} px="2em" h="max-content">
-      <Grid templateColumns="repeat(4, 1fr)" gap={6}>
-        {posts.map((post, index) => (
-          <GridItem key={index} w="100%">
-            <Card post={post} />
-          </GridItem>
+    <Flex w="full" flexDir={'column'} gap={'2em'} p="3em 2em" h="max-content">
+      <Flex alignItems={'center'} justifyContent="center" gap={'2em'} flexWrap="wrap">
+        {useProduct().product?.map((post, index) => (
+          <Box
+            initial={{ y: 10, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -10, opacity: 0 }}
+            transition="all 300ms"
+            as={motion.div}
+            key={index}
+          >
+            <Card post={post} isLarge={largeImaegPositions.includes(index)} />
+          </Box>
         ))}
-      </Grid>
+      </Flex>
+      <Footer />
     </Flex>
   );
 };
-
-// const CardMiniWrapper = () => {
-//   return (
-//     <Flex flexDir={'column'} w="full" gap={'1em'}>
-//       <Flex w="full" justifyContent={'space-between'}>
-//         <CardMini
-//           type={generateImageType}
-//           images={ImagesGenerator('Fashion').four()}
-//         />
-//         <CardMax
-//           type={generateImageType}
-//           image={ImagesGenerator('Film').one()}
-//         />
-//         <CardMini
-//           type={generateImageType}
-//           images={ImagesGenerator('Food').four()}
-//         />
-//         <CardMax
-//           type={generateImageType}
-//           image={ImagesGenerator('Sports').one()}
-//         />
-//       </Flex>
-//       <Flex w="full" justifyContent={'space-between'}>
-//         <CardMini
-//           type={generateImageType}
-//           images={ImagesGenerator('Fashion').four()}
-//         />
-//         <CardMax
-//           type={generateImageType}
-//           image={ImagesGenerator('Film').one()}
-//         />
-//         <CardMini
-//           type={generateImageType}
-//           images={ImagesGenerator('Food').four()}
-//         />
-//         <CardMax
-//           type={generateImageType}
-//           image={ImagesGenerator('Sports').one()}
-//         />
-//       </Flex>
-//     </Flex>
-//   );
-// };
 
 export default Dashboard;

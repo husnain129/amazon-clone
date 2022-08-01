@@ -7,6 +7,7 @@ import { AppProps } from 'next/app';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
+import { ProductProvider } from '../context/product';
 import '../styles/globals.css';
 // 2. Extend the theme to include custom colors, fonts, etc
 const colors = {
@@ -22,9 +23,11 @@ const theme = extendTheme({ colors });
 // 3. Pass the `theme` prop to the `ChakraProvider`
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ChakraProvider theme={theme}>
-      <Component {...pageProps} />
-    </ChakraProvider>
+    <ProductProvider>
+      <ChakraProvider theme={theme}>
+        <Component {...pageProps} />
+      </ChakraProvider>
+    </ProductProvider>
   );
 }
 
